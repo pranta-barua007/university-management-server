@@ -13,10 +13,13 @@ const oAuth2Client = new google.auth.OAuth2(
   GOOGLE_API_CREDS.CLIENT_SECRET,
   GOOGLE_API_CREDS.REDIRECT_URI
 );
-oAuth2Client.setCredentials({ refresh_token: GOOGLE_API_CREDS.REFRESH_TOKEN });
+//oAuth2Client.setCredentials({ refresh_token: GOOGLE_API_CREDS.REFRESH_TOKEN });
 
 const sendMail = async (email, secretToken, mode) => {
   try {
+    const refresh_token = await oAuth2Client.refreshAccessToken();
+
+    oAuth2Client.setCredentials({ refresh_token });
     const googleAccessToken = await oAuth2Client.getAccessToken();
 
     const transport = nodemailer.createTransport({
