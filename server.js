@@ -12,11 +12,11 @@ dotenv.config();
 const app = express();
 let server = http.createServer(app);
 let io = socket(server);
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN,
+    // origin: process.env.CLIENT_ORIGIN,
     credentials: true,
   })
 );
