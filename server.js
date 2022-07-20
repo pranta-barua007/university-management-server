@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 let server = http.createServer(app);
 let io = socket(server);
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
